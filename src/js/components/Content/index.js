@@ -54,7 +54,6 @@ class Content extends Component {
   };
 
   componentDidMount = () => {
-    this.focusInput();
     const data = this.context.instances.find(i => i.index === this.props.id);
     this.unregister = this.props.register(this);
     if (!data || Object.keys(data.oldData).length === 0) {
@@ -63,9 +62,16 @@ class Content extends Component {
   };
 
   // Adjust scrolling
-  componentDidUpdate = () => {
-    if (this.inputWrapper !== null) {
-      this.inputWrapper.scrollIntoView(false);
+  componentDidUpdate = (prevState) => {
+    const didHistoryChange = (prevState.historyCounter != this.state.historyCounter);
+    const isInitialCmd = this.state.historyCounter <= 1;
+    if (!isInitialCmd && didHistoryChange) {
+      if (this.inputWrapper !== null) {
+        this.inputWrapper.scrollIntoView(false);
+      }
+      if (this.contentWrapper !== null) {
+        this.contentWrapper.scrollIntoView(false);
+      }
     }
   };
 
