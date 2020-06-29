@@ -62,16 +62,11 @@ class Content extends Component {
   };
 
   // Adjust scrolling
-  componentDidUpdate = (prevState) => {
+  componentDidUpdate = (prevProps, prevState) => {
     const didHistoryChange = (prevState.historyCounter != this.state.historyCounter);
     const isInitialCmd = this.state.historyCounter <= 1;
-    if (!isInitialCmd && didHistoryChange) {
-      if (this.inputWrapper !== null) {
-        this.inputWrapper.scrollIntoView(false);
-      }
-      if (this.contentWrapper !== null) {
-        this.contentWrapper.scrollIntoView(false);
-      }
+    if (!isInitialCmd && didHistoryChange && this.contentWrapper !== null) {
+      this.contentWrapper.scrollTop = this.contentWrapper.scrollHeight;
     }
   };
 
