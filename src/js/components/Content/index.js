@@ -63,7 +63,7 @@ class Content extends Component {
 
   // Adjust scrolling
   componentDidUpdate = (prevProps, prevState) => {
-    const didHistoryChange = (prevState.historyCounter != this.state.historyCounter);
+    const didHistoryChange = (prevState.historyCounter !== this.state.historyCounter);
     const isInitialCmd = this.state.historyCounter <= 1;
     if (!isInitialCmd && didHistoryChange && this.contentWrapper !== null) {
       this.contentWrapper.scrollTop = this.contentWrapper.scrollHeight;
