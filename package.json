@@ -58,6 +58,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepublishOnly": "npm run lint && npm run build",
+    "prepare": "npm run lint && npm run build",
     "prebuildOnly": "rm -rf ./build",
     "lint": "./node_modules/.bin/eslint components/",
     "test": "./node_modules/.bin/jest",
